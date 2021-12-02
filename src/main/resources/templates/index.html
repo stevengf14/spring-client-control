@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Index</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Index</h1>
+        <div th:if="${people != null and !people.empty}">
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                <tr th:each="person : ${people}">
+                    <td th:text="${person.name}">Show Name</td>
+                    <td th:text="${person.lastName}">Show Last Name</td>
+                    <td th:text="${person.email}">Show Email</td>
+                    <td th:text="${person.phone}">Show Phone</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${people == null or people.empty}">
+            People list is empty
+        </div>
+        
+    </body>
+</html>
