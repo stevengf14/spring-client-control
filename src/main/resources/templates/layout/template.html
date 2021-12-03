@@ -10,7 +10,12 @@
             <h1 th:text="#{template.title}"></h1>
         </header>
         <footer th:fragment="footer">
-            <p>[[#{template.footer}]] <strong>Steven Guamán</strong> - 2021</p>
+            <div>
+                <br/>
+                <a th:href="@{/(lang=en)}">EN</a> |
+                <a th:href="@{/(lang=es)}">ES</a> |
+                <span>[[#{template.footer}]] <strong>Steven Guamán</strong> - 2021</span>
+            </div>
         </footer>
     </body>
 </html>
