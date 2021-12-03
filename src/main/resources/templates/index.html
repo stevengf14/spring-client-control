@@ -6,29 +6,29 @@
     </head>
     <body>
         <header th:replace="layout/template :: header"/>
-        <a th:href="@{/add}">Add Person</a>
+        <a th:href="@{/add}" th:text="#{person.add}"></a>
         <div th:if="${people != null and !people.empty}">
             <table border="1">
                 <tr>
-                    <th>Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th th:text="#{person.name}"></th>
+                    <th th:text="#{person.lastName}"></th>
+                    <th th:text="#{person.email}"></th>
+                    <th th:text="#{person.phone}"></th>
+                    <th th:text="#{action.edit}"></th>
+                    <th th:text="#{action.delete}"></th>
                 </tr>
                 <tr th:each="person : ${people}">
                     <td th:text="${person.name}">Show Name</td>
                     <td th:text="${person.lastName}">Show Last Name</td>
                     <td th:text="${person.email}">Show Email</td>
                     <td th:text="${person.phone}">Show Phone</td>
-                    <td><a th:href="@{/edit/} + ${person.idPerson}" th:text="Edit"></a></td>
-                    <td><a th:href="@{/delete{idPerson=${person.idPerson}}}" th:text="Delete"></a></td>
+                    <td><a th:href="@{/edit/} + ${person.idPerson}" th:text="#{action.edit}"></a></td>
+                    <td><a th:href="@{/delete{idPerson=${person.idPerson}}}" th:text="#{action.delete}"></a></td>
                 </tr>
             </table>
         </div>
         <div th:if="${people == null or people.empty}">
-            People list is empty
+            [[#{person.emptyList}]]
         </div>
         <footer th:replace="layout/template :: footer"/>
     </body>

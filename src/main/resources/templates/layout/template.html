@@ -7,10 +7,10 @@
     </head>
     <body>
         <header th:fragment="header">
-            <h1>Clients Control</h1>
+            <h1 th:text="#{template.title}"></h1>
         </header>
         <footer th:fragment="footer">
-            <p>Developed by <strong>Steven Guamán</strong> - 2021</p>
+            <p>[[#{template.footer}]] <strong>Steven Guamán</strong> - 2021</p>
         </footer>
     </body>
 </html>
