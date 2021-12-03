@@ -6,7 +6,8 @@
         <meta charset="UTF-8"></meta>
     </head>
     <body>
-        <h1>Person Data</h1>
+        <header th:replace="layout/template :: header"/>
+        <h2>Person Data</h2>
         <a th:href="@{/}">Get back</a>
         <br/>
         <form th:action="@{/save}" method="POST" th:object="${person}">
@@ -30,5 +31,6 @@
             
             <input type="submit" name="save" value="Save"/>
         </form>
+        <footer th:replace="layout/template :: footer"/>
     </body>
 </html>

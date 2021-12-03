@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <h1>Index</h1>
+        <header th:replace="layout/template :: header"/>
         <a th:href="@{/add}">Add Person</a>
         <div th:if="${people != null and !people.empty}">
             <table border="1">
@@ -30,6 +30,6 @@
         <div th:if="${people == null or people.empty}">
             People list is empty
         </div>
-        
+        <footer th:replace="layout/template :: footer"/>
     </body>
 </html>
