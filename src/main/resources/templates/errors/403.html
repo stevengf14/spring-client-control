@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title th:text="#{403.title}"></title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1 th:text="#{403.title}"></h1>
+        <div>
+            [[#{403.access.denied.message}]]
+            <a th:href="@{/}">[[#{action.getBack}]]</a>
+        </div>
+    </body>
+</html>

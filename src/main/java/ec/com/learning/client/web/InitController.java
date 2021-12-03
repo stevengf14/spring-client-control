@@ -7,6 +7,8 @@ import ec.com.learning.client.service.PersonService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,9 +23,10 @@ public class InitController {
     private PersonService personService;
     
     @GetMapping("/")
-    public String init(Model model){
+    public String init(Model model, @AuthenticationPrincipal User user){
         var people = personService.getAllPeople();
         log.info("Executing Spring MVC controller");
+        log.info("Logged user: " + user);
         model.addAttribute("people", people);
         return "index";
     }
