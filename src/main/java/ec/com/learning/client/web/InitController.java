@@ -4,10 +4,12 @@ package ec.com.learning.client.web;
 import ec.com.learning.client.dao.PersonDao;
 import ec.com.learning.client.domain.Person;
 import ec.com.learning.client.service.PersonService;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,7 +34,10 @@ public class InitController {
     }
     
     @PostMapping("/save")
-    public String save(Person person){
+    public String save(@Valid Person person, Errors errors){ //@Valid Person person and Errors errors allways have to be together
+        if(errors.hasErrors()){
+            return "edit";
+        }
         personService.save(person);
         return "redirect:/";
     }
