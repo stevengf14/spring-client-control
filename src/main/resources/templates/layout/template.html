@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Template</title>
         <meta charset="UTF-8"/>
@@ -17,6 +18,8 @@
                 <span>[[#{template.footer}]] <strong>Steven Guamán</strong> - 2021</span>
             </div>
             <form method="POST" th:action="@{/logout}">
+                <b>[[#{security.user}]]: </b><span sec:authentication="name">[[#{security.logged.user}]]</span> | 
+                <b>[[#{security.rol}]]: </b><span sec:authentication="principal.authorities">[[#{security.logged.roles}]]</span> | 
                 <a href="#" onclick="this.parentNode.submit();">Logout</a>
             </form>
         </footer>
