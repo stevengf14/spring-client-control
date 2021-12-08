@@ -1,7 +1,6 @@
 
 package ec.com.learning.client.web;
 
-import ec.com.learning.client.dao.PersonDao;
 import ec.com.learning.client.domain.Person;
 import ec.com.learning.client.service.PersonService;
 import javax.validation.Valid;

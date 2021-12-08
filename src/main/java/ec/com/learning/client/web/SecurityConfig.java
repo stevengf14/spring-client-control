@@ -1,10 +1,14 @@
 package ec.com.learning.client.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -12,31 +16,32 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
     
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                    .password("{noop}admin")
-                    .roles("ADMIN","USER")
-                .and()
-                .withUser("stevengf14")
-                    .password("{noop}123")
-                    .roles("USER");
+    @Autowired
+    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception{
+        build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
     
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/edit/**", "/add/**", "/delete")
-                    .hasRole("ADMIN")
+                .hasRole("ADMIN")
                 .antMatchers("/")
-                    .hasAnyRole("USER","ADMIN")
+                .hasAnyRole("USER", "ADMIN")
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
+                .formLogin()
+                .loginPage("/login")
                 .and()
-                    .exceptionHandling().accessDeniedPage("/errors/403");
+                .exceptionHandling().accessDeniedPage("/errors/403");
     }
 }
