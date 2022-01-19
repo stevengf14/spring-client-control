@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -33,4 +34,7 @@ public class Person implements Serializable{
     private String email;
     
     private String phone;
+    
+    @NotNull
+    private double balance;
 }

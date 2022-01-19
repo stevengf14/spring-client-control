@@ -6,30 +6,11 @@
     </head>
     <body>
         <header th:replace="layout/template :: header"/>
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/add}" th:text="#{person.add}"></a>
-        <div th:if="${people != null and !people.empty}">
-            <table border="1">
-                <tr>
-                    <th th:text="#{person.name}"></th>
-                    <th th:text="#{person.lastName}"></th>
-                    <th th:text="#{person.email}"></th>
-                    <th th:text="#{person.phone}"></th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{action.edit}"></th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{action.delete}"></th>
-                </tr>
-                <tr th:each="person : ${people}">
-                    <td th:text="${person.name}">Show Name</td>
-                    <td th:text="${person.lastName}">Show Last Name</td>
-                    <td th:text="${person.email}">Show Email</td>
-                    <td th:text="${person.phone}">Show Phone</td>
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/edit/} + ${person.idPerson}" th:text="#{action.edit}"></a></td>
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/delete{idPerson=${person.idPerson}}}" th:text="#{action.delete}"></a></td>
-                </tr>
-            </table>
-        </div>
-        <div th:if="${people == null or people.empty}">
-            [[#{person.emptyList}]]
-        </div>
+        <section th:replace="layout/addButtons :: addButtons"></section>
+        <section th:replace="layout/listClients :: listClients"></section>
+        <!--
+        <section th:replace="layout/addClient :: addClient"></section>
+        -->
         <footer th:replace="layout/template :: footer"/>
     </body>
 </html>
