@@ -1,36 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-      xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/template :: head">
         <title th:text="#{person.form}"></title>
         <meta charset="UTF-8"></meta>
     </head>
     <body>
         <header th:replace="layout/template :: header"/>
-        <h2 th:text="#{person.form}"></h2>
-        <a th:href="@{/}">[[#{action.getBack}]]</a>
-        <br/>
-        <form th:action="@{/save}" method="POST" th:object="${person}">
-            <input type="hidden" name="idPerson" th:field="*{idPerson}"/>
-            <br/>
-            <label for="name">[[#{person.name}]]:</label>
-            <input type="text" name="name" th:field="*{name}"/>
-            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
-            <br/>
-            <label for="lastName">[[#{person.lastName}]]:</label>
-            <input type="text" name="lastName" th:field="*{lastName}"/>
-            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
-            <br/>
-            <label for="email">[[#{person.email}]]:</label>
-            <input type="text" name="email" th:field="*{email}"/>
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
-            <br/>
-            <label for="phone">[[#{person.phone}]]:</label>
-            <input type="text" name="phone" th:field="*{phone}"/>
-            <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</span>
-            <br/>
-            <input type="submit" name="save" value="Save"/>
-        </form>
-        <footer th:replace="layout/template :: footer"/>
+        <section th:replace="layout/editClient :: editClient"></section>
+        <footer th:replace="layout/template :: footer"/> 
     </body>
 </html>
