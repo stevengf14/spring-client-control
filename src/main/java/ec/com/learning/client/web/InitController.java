@@ -27,6 +27,12 @@ public class InitController {
         log.info("Executing Spring MVC controller");
         log.info("Logged user: " + user);
         model.addAttribute("people", people);
+        var totalBalance = 0D;
+        for(var p: people){
+            totalBalance += p.getBalance();
+        }
+        model.addAttribute("totalBalance", totalBalance);
+        model.addAttribute("totalClients", people.size());
         return "index";
     }
     
